@@ -1,0 +1,32 @@
+[
+    {
+      "group": {
+        "name": "plugin:pdf_viewer"
+      },
+      "setting": {
+        "description": "How article PDFs are embedded on the article page: none, object, embed or adobe",
+        "is_translatable": false,
+        "name": "pdf_viewer_method",
+        "pretty_name": "PDF viewer method",
+        "type": "char"
+      },
+      "value": {
+        "default": "none"
+      }
+    },
+    {
+      "group": {
+        "name": "plugin:pdf_viewer"
+      },
+      "setting": {
+        "description": "Adobe PDF Embed API client ID, registered for this journal's domain",
+        "is_translatable": false,
+        "name": "pdf_viewer_adobe_client_id",
+        "pretty_name": "Adobe PDF Embed client ID",
+        "type": "char"
+      },
+      "value": {
+        "default": ""
+      }
+    }
+]
