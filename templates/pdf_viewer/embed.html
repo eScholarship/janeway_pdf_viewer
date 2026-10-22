@@ -1,0 +1,11 @@
+{% load i18n %}
+<section class="pdf-viewer" data-pdf-viewer-method="embed" aria-label="{% trans 'Article PDF' %}">
+    <h2>{% trans "PDF" %}</h2>
+    {# <embed> has no fallback content, so the link below is the only fallback. #}
+    <embed
+        src="{{ pdf_url }}"
+        type="application/pdf"
+        title="{{ article.title|striptags }} (PDF)"
+        style="width: 100%; height: 80vh; border: 1px solid #ccc;">
+    {% include "pdf_viewer/fallback.html" %}
+</section>

@@ -1,0 +1,7 @@
+{% load i18n %}
+<p class="pdf-viewer-fallback">
+    {% trans "If the PDF does not display," %}
+    <a href="{{ pdf_url }}" target="_blank">{% trans "open it in a new tab" %}</a>
+    {% trans "or" %}
+    <a href="{{ download_url }}">{% trans "download it" %}</a>.
+</p>

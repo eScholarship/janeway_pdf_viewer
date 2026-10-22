@@ -1,0 +1,29 @@
+{% load i18n %}
+<section class="pdf-viewer" data-pdf-viewer-method="adobe" aria-label="{% trans 'Article PDF' %}">
+    <h2>{% trans "PDF" %}</h2>
+    {% if adobe_client_id %}
+        <div id="pdf-viewer-adobe" style="width: 100%; height: 80vh;"></div>
+        {{ adobe_client_id|json_script:"pdf-viewer-adobe-client-id" }}
+        {{ absolute_pdf_url|json_script:"pdf-viewer-adobe-pdf-url" }}
+        {{ galley.file.original_filename|default:"article.pdf"|json_script:"pdf-viewer-adobe-file-name" }}
+        <script src="https://acrobatservices.adobe.com/view-sdk/viewer.js"></script>
+        <script>
+            document.addEventListener("adobe_dc_view_sdk.ready", function () {
+                function read(id) {
+                    return JSON.parse(document.getElementById(id).textContent);
+                }
+                var adobeDCView = new AdobeDC.View({
+                    clientId: read("pdf-viewer-adobe-client-id"),
+                    divId: "pdf-viewer-adobe",
+                });
+                adobeDCView.previewFile({
+                    content: {location: {url: read("pdf-viewer-adobe-pdf-url")}},
+                    metaData: {fileName: read("pdf-viewer-adobe-file-name")},
+                }, {embedMode: "SIZED_CONTAINER"});
+            });
+        </script>
+    {% else %}
+        <p>{% trans "The Adobe PDF viewer has not been configured for this journal." %}</p>
+    {% endif %}
+    {% include "pdf_viewer/fallback.html" %}
+</section>

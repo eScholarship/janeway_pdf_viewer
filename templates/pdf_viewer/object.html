@@ -1,0 +1,15 @@
+{% load i18n %}
+<section class="pdf-viewer" data-pdf-viewer-method="object" aria-label="{% trans 'Article PDF' %}">
+    <h2>{% trans "PDF" %}</h2>
+    <object
+        data="{{ pdf_url }}"
+        type="application/pdf"
+        title="{{ article.title|striptags }} (PDF)"
+        style="width: 100%; height: 80vh; border: 1px solid #ccc;">
+        <p>
+            {% trans "Your browser cannot display this PDF." %}
+            <a href="{{ download_url }}">{% trans "Download the PDF" %}</a>.
+        </p>
+    </object>
+    {% include "pdf_viewer/fallback.html" %}
+</section>
