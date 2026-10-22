@@ -6,10 +6,14 @@
 {% block body %}
 <div class="box">
     <div class="title-area">
-        <h2>Management Form</h2>
+        <h2>PDF Viewer Settings</h2>
     </div>
     <div class="content">
-        {{ form|foundation }}
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|foundation }}
+            <button type="submit" class="button">Save</button>
+        </form>
     </div>
 </div>
 {% endblock body %}
